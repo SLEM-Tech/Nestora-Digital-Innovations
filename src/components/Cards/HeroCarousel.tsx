@@ -6,7 +6,6 @@ import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 import Picture from "../picture/Picture";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import PWADownload from "@src/app/(Home)/_components/PWADownload";
 
 const HeroCarousel = ({ heroImage, heroImage2 }: any) => {
 	// 1. Initialize Embla first so the API is available for subsequent hooks
@@ -91,9 +90,7 @@ const HeroCarousel = ({ heroImage, heroImage2 }: any) => {
 					/>
 				</div>
 			</div>
-			{/* <div className='absolute bottom-3 right-3 z-10'>
-				<PWADownload />
-			</div> */}
+
 			<style jsx>{`
 				@keyframes carousel-progress {
 					from {
