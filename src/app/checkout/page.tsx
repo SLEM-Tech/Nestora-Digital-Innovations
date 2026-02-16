@@ -1,6 +1,7 @@
 import AppLayout from "@src/components/AppLayout";
 import React from "react";
 import CheckoutInfoForm from "./component/CheckoutInfoForm";
+import AppMenu from "@src/components/Navbars/AppMenu";
 
 const Page = () => {
 	return (
@@ -13,6 +14,7 @@ const Page = () => {
 				</section>
 				<CheckoutInfoForm />
 			</div>
+			<AppMenu />
 		</AppLayout>
 	);
 };
