@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+   "ci-build": "next lint && tsc --noEmit && next build"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
@@ -46,10 +47,10 @@
     "node-rsa": "^1.1.1",
     "pwa-asset-generator": "^8.1.2",
     "rc-drawer": "^7.3.0",
-    "react": "19",
     "react-country-region-selector": "^4.0.6",
     "react-dom": "19",
     "react-dropzone": "^15.0.0",
+     "react": "^19.1.0",
     "react-hamburger-menu": "^1.2.1",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^10.0.3",
