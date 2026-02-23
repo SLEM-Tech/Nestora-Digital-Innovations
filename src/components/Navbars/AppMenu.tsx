@@ -100,10 +100,8 @@ const AppMenu = () => {
 	return (
 		<>
 			{/* Mobile Navigation Bar */}
-			<div className='sm:hidden fixed bottom-0 z-50 w-full'>
-				{/* Background with subtle gradient */}
+			{/* <div className='sm:hidden fixed bottom-0 z-50 w-full'>
 				<div className='relative bg-white border-t border-gray-300/50 backdrop-blur-sm'>
-					{/* Navigation Items */}
 					<div className='grid grid-cols-4 gap-0 w-full px-1 py-3'>
 						{mobileHeaderLinkUrl.map((menuItem) => {
 							const isActive =
@@ -119,14 +117,11 @@ const AppMenu = () => {
 										isActive ? "transform -translate-y-1" : ""
 									}`}
 								>
-									{/* Badge for cart */}
 									{totalItems > 0 && menuItem.badge && menuItem.badge > 0 && (
 										<span className='absolute -top-1 right-1/4 bg-red-500 text-white text-[10px] rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1 font-bold'>
 											{menuItem.badge > 9 ? "9+" : menuItem.badge}
 										</span>
 									)}
-
-									{/* Icon Container */}
 									<div
 										className={`relative p-2 rounded-full transition-all duration-200 ${
 											isActive
@@ -137,7 +132,6 @@ const AppMenu = () => {
 										<IconComponent className='size-6' />
 									</div>
 
-									{/* Label */}
 									<span
 										className={`text-[10px] mt-0.5 transition-colors ${
 											isActive
@@ -148,7 +142,6 @@ const AppMenu = () => {
 										{menuItem.link}
 									</span>
 
-									{/* Active indicator line */}
 									{isActive && (
 										<div className='w-6 h-0.5 bg-primary-100 rounded-full mt-0.5'></div>
 									)}
@@ -157,7 +150,6 @@ const AppMenu = () => {
 						})}
 					</div>
 
-					{/* User Dropdown Menu */}
 					{isUserMenuOpen && (
 						<div className='absolute bottom-full right-2 mb-4 w-56 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 animate-slideUp'>
 							<div className='p-3'>
@@ -195,10 +187,10 @@ const AppMenu = () => {
 						</div>
 					)}
 				</div>
-			</div>
+			</div> */}
 
 			{/* Cart Drawer */}
-			<Drawer
+			{/* <Drawer
 				open={isCartOpen}
 				onClose={onCloseCart}
 				placement='right'
@@ -212,18 +204,18 @@ const AppMenu = () => {
 				maskStyle={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
 			>
 				<ProductTable onClose={onCloseCart} />
-			</Drawer>
+			</Drawer> */}
 
 			{/* Overlay for user menu */}
-			{isUserMenuOpen && (
+			{/* {isUserMenuOpen && (
 				<div
 					className='fixed inset-0 z-40 sm:hidden bg-black/20'
 					onClick={() => setIsUserMenuOpen(false)}
 				></div>
-			)}
+			)} */}
 
 			{/* Add custom animation */}
-			<style jsx global>{`
+			{/* <style jsx global>{`
 				@keyframes slideUp {
 					from {
 						opacity: 0;
@@ -237,7 +229,7 @@ const AppMenu = () => {
 				.animate-slideUp {
 					animation: slideUp 0.2s ease-out;
 				}
-			`}</style>
+			`}</style> */}
 		</>
 	);
 };

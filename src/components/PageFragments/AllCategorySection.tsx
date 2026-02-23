@@ -125,7 +125,7 @@ const AllCategorySection = () => {
 	return (
 		<>
 			{/* Hero Concept inspired by the image */}
-			<div className='relative w-full h-screen overflow-hidden'>
+			<div className='relative w-full h-[80vh] sm:h-screen overflow-hidden'>
 				{/* The Background Image */}
 				<Picture
 					src={heroBg}
@@ -137,21 +137,21 @@ const AllCategorySection = () => {
 				<div className='absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent' />
 
 				{/* Content Overlay */}
-				<div className='absolute inset-0 flex flex-col justify-center px-8 lg:px-20 max-w-5xl space-y-6'>
-					<h1 className='text-3xl lg:text-6xl font-black text-white leading-tight tracking-tighter uppercase italic'>
+				<div className='absolute inset-0 flex flex-col justify-center pt-20 sm:pt-0 px-8 lg:px-20 max-w-5xl space-y-6'>
+					<h1 className='text-3xl lg:text-6xl font-black text-center sm:text-start text-white leading-tight tracking-tighter uppercase'>
 						Powering Your Digital <br />
 						<span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500'>
 							World, <br /> Piece by Piece.
 						</span>
 					</h1>
-					<p className='text-gray-300 text-lg lg:text-xl max-w-xl font-medium leading-relaxed'>
+					<p className='text-gray-300 text-center sm:text-start text-base lg:text-2xl max-w-xl font-medium leading-relaxed'>
 						From essential components to premium accessories, we supply the
 						tools that keep your tech running at its best.
 					</p>
 				</div>
 			</div>
 			{/* Category Section Styling Idea */}
-			<div className='grid grid-cols-2 lg:grid-cols-5 mx-auto max-w-[1256px] border mt-4 gap-6'>
+			<div className='grid grid-cols-2 lg:grid-cols-5 mx-auto max-w-[1256px] mt-4 gap-6 p-2 lg:p-0'>
 				{Categories?.slice(0, 5).map((cat) => {
 					const productImage: any = categoryProductsMap[cat?.id];
 					return (
@@ -169,7 +169,7 @@ const AllCategorySection = () => {
 
 							{/* Text Label */}
 							<div className='absolute bottom-4 left-4'>
-								<h3 className='text-lg font-bold text-white uppercase'>
+								<h3 className='text-sm sm:text-lg font-bold text-white uppercase'>
 									{cat.name}
 								</h3>
 							</div>

@@ -6,17 +6,17 @@ import { heroBg, machineImage } from "@public/images";
 
 const MachineMaintenance = () => {
 	return (
-		<section className='w-full grid grid-cols-1 md:grid-cols-2 min-h-[800px] bg-white overflow-hidden'>
+		<section className='w-full grid grid-cols-1 md:grid-cols-2 sm:min-h-[800px] bg-white overflow-hidden'>
 			{/* 1. Content Section (Left) */}
 			<div className='bg-[#002B5B] flex flex-col justify-center p-8 sm:p-12 md:p-16 lg:p-24 space-y-8'>
 				{/* Main Heading */}
-				<h2 className='text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight tracking-tight uppercase'>
+				<h2 className='text-xl sm:text-4xl md:text-5xl font-black text-white leading-tight tracking-tight uppercase'>
 					Maintenance for <br />
 					your machines.
 				</h2>
 
 				{/* Description Text */}
-				<p className='text-gray-200 text-base md:text-lg leading-relaxed max-w-lg font-medium opacity-90'>
+				<p className='text-gray-200 text-sm md:text-lg leading-relaxed max-w-lg font-medium opacity-90'>
 					Maintenance of Power supplies, peripherals, and precision components
 					that keep your digital life moving without interruption.
 				</p>
@@ -24,7 +24,7 @@ const MachineMaintenance = () => {
 				{/* Action Button */}
 				<Link
 					href='/contact-us'
-					className='w-fit bg-white text-[#002B5B] font-bold uppercase tracking-widest px-8 py-3.5 rounded-sm hover:bg-gray-100 transition-all active:scale-95 shadow-lg'
+					className='w-fit bg-white text-primary-200 text-sm sm:text-base font-bold uppercase tracking-widest px-3 lg:px-8 py-3.5 rounded-sm hover:bg-gray-100 transition-all active:scale-95 shadow-lg'
 				>
 					Contact Us
 				</Link>
