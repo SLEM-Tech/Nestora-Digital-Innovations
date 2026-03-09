@@ -20,21 +20,24 @@ const ContactCards = () => {
 			title: "Email Us",
 			type: "email",
 			icon: <RxEnvelopeClosed className='text-primary text-2xl xl:text-4xl' />,
-			additionalText: GeneralSettings ? GeneralSettings[0]?.value : "N/A",
+			additionalText: "admin@adamilindsey.site",
+			// additionalText: GeneralSettings ? GeneralSettings[0]?.value : "N/A",
 		},
 		{
 			id: 2,
 			title: "Call Us",
 			icon: <FiPhoneCall className='text-primary text-2xl xl:text-4xl' />,
 			type: "tel",
-			additionalText: GeneralSettings ? GeneralSettings[1]?.value : "N/A",
+			additionalText: "08034637410",
+			// additionalText: GeneralSettings ? GeneralSettings[1]?.value : "N/A",
 		},
 		{
 			id: 3,
 			title: "Location",
 			type: "text",
 			icon: <IoLocationOutline className='text-primary text-2xl xl:text-4xl' />,
-			description: GeneralSettings ? GeneralSettings[2]?.value : "N/A",
+			// description: GeneralSettings ? GeneralSettings[2]?.value : "N/A",
+			description: "6, GIWA EGUNBOTU, IKORODU , LAGOS STATE , NIGERIA",
 		},
 		// Add more contact card data here if needed
 	];
