@@ -35,7 +35,7 @@ const AllCategorySection = () => {
 		isError: categoryIsError,
 	} = useCategories("");
 
-	const Categories: CategoryType[] = categories;
+	const Categories: CategoryType[] = categories ?? [];
 	const TotalCatgory = Categories?.length - 1;
 
 	useEffect(() => {
