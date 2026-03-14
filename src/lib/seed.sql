@@ -25,7 +25,6 @@ SELECT 'Pendant Lights', 'pendant-lights', 'Sculptural ceiling fixtures', id, 'h
 FROM nestora_categories WHERE slug = 'lighting' ON CONFLICT (slug) DO NOTHING;
 
 -- ── 2. Products (30 Items) ──────────────────────────────────
-
 INSERT INTO nestora_products (name, slug, sku, description, short_description, price, regular_price, sale_price, stock_status, stock_quantity, rating_count, average_rating, status) VALUES
 -- Seating
 ('Nordic Velvet Sofa', 'nordic-velvet-sofa', 'FUR-NVS-01', 'Hand-upholstered velvet sofa with solid oak legs. Features deep-seating foam and a kiln-dried hardwood frame for long-lasting durability.', 'Three-seater premium velvet sofa in Emerald Green', 450000, 520000, 450000, 'instock', 10, 15, 4.80, 'publish'),
