@@ -13,8 +13,8 @@ export async function POST(req: NextRequest) {
 
     const user = await queryOne<any>(
       `SELECT id, username, email, password_hash, role, first_name, last_name
-       FROM ${T.users}
-       WHERE (username = $1 OR email = $1) AND role = 'admin'`,
+        FROM ${T.users}
+        WHERE (username = $1 OR email = $1) AND role = 'admin'`,
       [username],
     );
 
