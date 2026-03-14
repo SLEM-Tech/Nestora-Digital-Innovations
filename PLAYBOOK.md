@@ -1,4 +1,4 @@
-# Clowstack Technologies — Developer Playbook
+# Nestora Digital Innovations — Developer Playbook
 
 Everything a new developer needs to know to clone this project and get it running.
 
@@ -19,8 +19,8 @@ Everything a new developer needs to know to clone this project and get it runnin
 ## 1. Clone & Install
 
 ```bash
-git clone https://github.com/SLEM-Tech/clowstack-technologies.git
-cd clowstack-technologies
+git clone https://github.com/SLEM-Tech/nestora-digital-innovations.git
+cd nestora-digital-innovations
 npm install --legacy-peer-deps
 ```
 
@@ -30,7 +30,7 @@ npm install --legacy-peer-deps
 
 ## 2. Environment Variables
 
-Create a `.env.local` file in the project root. **Never commit this file.**
+Create a `.env` file in the project root. **Never commit this file.**
 
 ```env
 # ── App ──────────────────────────────────────────────────────
@@ -42,6 +42,7 @@ DB_PORT=5432
 DB_NAME=store_db
 DB_USER=postgres
 DB_PASSWORD=your_password
+# DB_SSL=true   # uncomment only if your DB server has SSL enabled
 
 # ── AWS S3 ────────────────────────────────────────────────────
 AWS_ACCESS_KEY=your_access_key_id
@@ -53,7 +54,7 @@ AWS_BUCKET_NAME=your_bucket_name
 JWT_SECRET=a_long_random_secret_string
 
 # ── Table prefix (must match what was used during DB init) ────
-TABLE_PREFIX=clowstack_
+TABLE_PREFIX=nestora_
 
 # ── AlliancePay (payment gateway) ────────────────────────────
 NEXT_PUBLIC_CHECKOUT_API=https://checkout-api-service-dev.eks-alliancepay.com
@@ -78,7 +79,7 @@ NEXT_PUBLIC_PAYSTACK_SECRET_KEY=sk_live_...
      "Resource": "arn:aws:s3:::your-bucket-name/uploads/*"
    }
    ```
-3. Create an IAM user with `AmazonS3FullAccess` (or scoped to your bucket) and copy its Access Key and Secret Key into `.env.local`.
+3. Create an IAM user with `AmazonS3FullAccess` (or scoped to your bucket) and copy its Access Key and Secret Key into `.env`.
 4. Add **CORS** to the bucket so the browser can read uploaded URLs:
    ```json
    [
@@ -109,19 +110,20 @@ npm run dev
 GET http://localhost:3000/api/db/migrate?secret=init-db-2024
 ```
 
-Creates all database tables with the `clowstack_` prefix. Source file: `src/lib/schema.sql`.
+Creates all database tables with the `nestora_` prefix (or whatever `TABLE_PREFIX` you set). Source file: `src/lib/schema.sql`.
 
 Tables created:
-- `clowstack_users`
-- `clowstack_categories`
-- `clowstack_products`
-- `clowstack_product_images`
-- `clowstack_product_categories`
-- `clowstack_product_attributes`
-- `clowstack_orders`
-- `clowstack_order_items`
-- `clowstack_banners`
-- `clowstack_global_settings`
+- `nestora_users`
+- `nestora_categories`
+- `nestora_products`
+- `nestora_product_images`
+- `nestora_product_categories`
+- `nestora_product_attributes`
+- `nestora_orders`
+- `nestora_order_items`
+- `nestora_banners`
+- `nestora_global_settings`
+- `nestora_reviews`
 
 Expected response:
 ```json
@@ -160,7 +162,7 @@ Expected response:
 ### Step 4 — Create the super admin account
 
 ```
-GET http://localhost:3000/api/admin/bootstrap?secret=clowstack-admin-2024
+GET http://localhost:3000/api/admin/bootstrap?secret=nestora-admin-2024
 ```
 
 Creates the first admin user:
@@ -182,7 +184,7 @@ Expected response:
 
 ### Full Setup — Quick Copy-Paste
 
-Start the server, then open these four URLs in your browser (or use curl):
+Start the server, then run:
 
 ```bash
 # 1. Migrate schema
@@ -192,7 +194,7 @@ curl "http://localhost:3000/api/db/migrate?secret=init-db-2024"
 curl "http://localhost:3000/api/db/seed?secret=seed-db-2024"
 
 # 3. Create super admin
-curl "http://localhost:3000/api/admin/bootstrap?secret=clowstack-admin-2024"
+curl "http://localhost:3000/api/admin/bootstrap?secret=nestora-admin-2024"
 ```
 
 Then log in at `http://localhost:3000/admin/login` with `admin@gmail.com` / `admin`.
@@ -221,9 +223,12 @@ Dev server runs at `http://localhost:3000`.
 | `http://localhost:3000` | Customer storefront |
 | `http://localhost:3000/admin/login` | Admin panel login |
 | `http://localhost:3000/admin/dashboard` | Admin dashboard (requires login) |
-| `http://localhost:3000/api/db/migrate?secret=init-db-2024` | Run schema migration (step 1 of setup) |
-| `http://localhost:3000/api/db/seed?secret=seed-db-2024` | Seed sample products & categories (step 2) |
-| `http://localhost:3000/api/admin/bootstrap?secret=clowstack-admin-2024` | Create super admin account (step 3) |
+| `http://localhost:3000/api/db/migrate?secret=init-db-2024` | Run schema migration |
+| `http://localhost:3000/api/db/seed?secret=seed-db-2024` | Seed sample products & categories |
+| `http://localhost:3000/api/admin/bootstrap?secret=nestora-admin-2024` | Create super admin account |
+| `DELETE /api/admin/truncate` | Delete all products & categories (admin auth required) |
+| `DELETE /api/admin/truncate?target=products` | Delete products only |
+| `DELETE /api/admin/truncate?target=categories` | Delete categories only |
 
 ---
 
@@ -246,15 +251,16 @@ src/
 │   │       └── settings/
 │   └── api/
 │       ├── admin/       # Admin API routes (cookie auth)
+│       │   └── truncate/ # DELETE all products and/or categories
 │       ├── customer/    # Customer auth & profile routes
 │       ├── products/    # Public product routes
 │       ├── order/       # Order routes
 │       ├── category/    # Category routes
 │       ├── media/       # File upload (customer-facing)
-│       └── db/          # Schema migration endpoint
+│       └── db/          # Schema migration & seed endpoints
 ├── components/
 │   ├── lib/
-│   │   └── woocommerce.tsx   # Internal API client (replaces WooCommerce SDK)
+│   │   └── woocommerce.tsx   # Internal API client
 │   └── set-up/redux/         # Redux store
 ├── lib/
 │   ├── db.ts            # PostgreSQL pool
@@ -262,7 +268,7 @@ src/
 │   ├── s3.ts            # AWS S3 upload
 │   ├── tables.ts        # Table name registry (uses TABLE_PREFIX)
 │   ├── schema.sql       # Full DB schema
-│   └── productHelpers.ts # Hydrates DB rows into WooCommerce-compatible shape
+│   └── productHelpers.ts # Hydrates DB rows into API-compatible shape
 utils/
 ├── endpoints.ts         # AlliancePay & Paystack API helpers
 └── function.tsx         # Shared utility functions
@@ -299,16 +305,17 @@ utils/
 |---------|-----|
 | `npm install` fails with peer dep errors | Use `npm install --legacy-peer-deps` |
 | Build error: `Can't resolve '../../_lib/requireAdmin'` | Clear `.next` cache: `rm -rf .next` and restart |
-| Upload fails with "Unauthorized" | Make sure AWS keys are set in `.env.local` and S3 bucket has public read policy |
-| Login works but redirects back to login | Check `JWT_SECRET` is set in `.env.local` |
+| Upload fails with "Unauthorized" | Make sure AWS keys are set in `.env` and S3 bucket has public read policy |
+| Login works but redirects back to login | Check `JWT_SECRET` is set in `.env` |
+| DB connection timeout / 500 error | Check `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD` in `.env`. Do NOT set `DB_SSL=true` unless your server has SSL enabled |
 | DB errors on first run | Visit `/api/db/migrate?secret=init-db-2024` to create tables first |
-| Push rejected by GitHub (secret scanning) | Never hardcode credentials — use `.env.local` only |
+| Push rejected by GitHub (secret scanning) | Never hardcode credentials — use `.env` only |
 
 ---
 
 ## 11. Secrets Checklist Before Deploying
 
-- [ ] `.env.local` is in `.gitignore` ✓
+- [ ] `.env` is in `.gitignore` ✓
 - [ ] AWS credentials are **not** hardcoded anywhere in source
 - [ ] `JWT_SECRET` is set to a strong random string (not the default)
 - [ ] Admin bootstrap and DB migrate endpoints are called once then noted as done
