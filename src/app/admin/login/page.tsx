@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { CompanyShortName } from "@constants";
 
 export default function AdminLoginPage() {
 	const router = useRouter();
@@ -40,7 +41,9 @@ export default function AdminLoginPage() {
 		<div className='min-h-screen bg-[#002D5B] flex items-center justify-center p-4'>
 			<div className='w-full max-w-sm'>
 				<div className='text-center mb-8'>
-					<h1 className='text-2xl font-bold text-white'>Nestora Admin</h1>
+					<h1 className='text-2xl font-bold text-white'>
+						{CompanyShortName} Admin
+					</h1>
 					<p className='text-white/60 text-sm mt-1'>
 						Sign in to your admin account
 					</p>
@@ -59,7 +62,7 @@ export default function AdminLoginPage() {
 									setForm((f) => ({ ...f, username: e.target.value }))
 								}
 								required
-								className='w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#004B93] focus:border-transparent'
+								className='w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
 								placeholder='Enter username or email'
 							/>
 						</div>
@@ -75,7 +78,7 @@ export default function AdminLoginPage() {
 									setForm((f) => ({ ...f, password: e.target.value }))
 								}
 								required
-								className='w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#004B93] focus:border-transparent'
+								className='w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-transparent'
 								placeholder='Enter password'
 							/>
 						</div>
@@ -89,7 +92,7 @@ export default function AdminLoginPage() {
 						<button
 							type='submit'
 							disabled={loading}
-							className='w-full py-2.5 bg-[#004B93] hover:bg-[#003a73] text-white font-semibold rounded-lg text-sm transition-colors disabled:opacity-60'
+							className='w-full py-2.5 bg-priring-primary-100 hover:bg-[#003a73] text-white font-semibold rounded-lg text-sm transition-colors disabled:opacity-60'
 						>
 							{loading ? "Signing in..." : "Sign In"}
 						</button>

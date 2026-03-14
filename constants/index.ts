@@ -55,6 +55,7 @@ export const splitText = (text: string) => {
 };
 
 export const CompanyName = "Nestora Digital Innovations";
+export const CompanyShortName = "Nestora";
 
 export const statusStyles: { [key: string]: string } = {
 	completed: "text-emerald-500",
